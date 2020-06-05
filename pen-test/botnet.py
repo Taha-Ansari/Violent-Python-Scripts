@@ -45,7 +45,6 @@ if __name__ == "__main__":
 	# Create Botnet object
 	bot_net = BotNet()
 	# Add bots to botnet
-	bot_net.add_bot('', '', '')
-	bot_net.add_bot('', '', '')
+	bot_net.add_bot('', '', '')	
 	# Commands each bot added to the net
 	bot_net.command_net("ls -la")

@@ -9,8 +9,9 @@ class PortScanner:
         # Will throw an exception if connection to socket fails to initialize
         try:
             s = socket.socket()
-            r = s.connect((host, port))
-            print("Port {}: Open".format(port))
+            s.connect((host, port))
+            r = s.recv(150)
+            print("Port {}: Open | {}".format(port, str(r)))
             s.close()
         except:
             print("Port {}: Closed".format(port))
@@ -37,7 +38,7 @@ if __name__ == '__main__':
 
     # Commonly used ports
     ports = [21, 22, 80, 443]
-    host = input("Enter ip address or full web address: ")
+    host = input("Enter ip address or full web address: ") or '192.168.2.131'
 
     # Execute Scan
     ps.execute_scan(host,ports)
