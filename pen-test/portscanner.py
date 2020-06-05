@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import socket
+import nmap
 
 class PortScanner:
     def get_ip(self, hostname):
@@ -28,8 +29,8 @@ class PortScanner:
         # Check ports
         for port in ports:
             self.check_port(host, port)
-        
-        print("Scan complete")
+
+        print("Scan complete")   
 
 if __name__ == '__main__':
 
@@ -39,6 +40,6 @@ if __name__ == '__main__':
     # Commonly used ports
     ports = [21, 22, 80, 443]
     host = input("Enter ip address or full web address: ") or '192.168.2.131'
-
-    # Execute Scan
-    ps.execute_scan(host,ports)
+    
+    # Execute TCP Scan or Nmap
+    ps.execute_scan(host, ports)
