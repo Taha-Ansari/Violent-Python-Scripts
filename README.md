@@ -1,2 +1,2 @@
 # Violent-Python-Scripts
-Scripts inspired by or blatantly copied from the book Violent Python
+Scripts inspired by the book Violent Python by TJ, O'Connor
