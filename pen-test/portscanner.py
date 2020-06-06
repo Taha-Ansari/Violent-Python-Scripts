@@ -38,7 +38,7 @@ class PortScanner:
         # Join threads to synch back before finishing
         for thread in threads:
             thread.join()
-
+    
         print("Scan complete")
 
 if __name__ == '__main__':
