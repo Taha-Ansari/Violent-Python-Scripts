@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import socket
 import nmap
+import threading
 
 class PortScanner:
     def get_ip(self, hostname):
@@ -18,6 +19,8 @@ class PortScanner:
             print("Port {}: Closed".format(port))
 
     def execute_scan(self, host, ports):
+        threads = []
+
         # Assuming ip is standard ipv4 with 3 '.' chars
         is_ip = True if host.count(".") == 3 else False
 
@@ -26,11 +29,17 @@ class PortScanner:
             host = self.get_ip(host)
             print("IP address for target is: {}".format(host))
 
-        # Check ports
+        # Check ports, create 1 thread for each port to simul scan all of them
         for port in ports:
-            self.check_port(host, port)
+            t = threading.Thread(target=self.check_port, args=(host, port))
+            t.start()
+            threads.append(t)
+        
+        # Join threads to synch back before finishing
+        for thread in threads:
+            thread.join()
 
-        print("Scan complete")   
+        print("Scan complete")
 
 if __name__ == '__main__':
 
